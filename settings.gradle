@@ -1,0 +1,6 @@
+rootProject.name = 'micro-test'
+include 'microservices:productservice', 'microservices:datastore'
+project(':microservices:productservice').projectDir = file('microservices/productservice')
+project(':microservices:datastore').projectDir = file('microservices/datastore')
+
+
