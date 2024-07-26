@@ -7,7 +7,8 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "microservices/productservice/src/main/resources/features",
-        glue = "com.ib.it.productservice.test.integration.bdd.stepdefinitions",
+        glue = {"com.ib.it.productservice.test.integration.bdd.stepdefinitions",
+        "com.ib.it.productservice.test.config"},
         plugin = {
                 "pretty",
                 "html:target/cucumber-reports/html-report.html",

@@ -11,10 +11,10 @@ import java.util.List;
 import static org.junit.Assert.assertTrue;
 
 
-@CucumberContextConfiguration
-@ContextConfiguration(classes = CucumberSpringConfiguration.class)
+//@CucumberContextConfiguration
 
-public class CalcStepDefs {
+
+public class CalcStepDefs extends CucumberBootstrap{
     private int result;
     List<Integer> numbers;
 
