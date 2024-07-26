@@ -1,2 +1,8 @@
 server:
   port: 8090
+
+#cucumber:
+#  features: classpath:/features
+#  glue: com.ib.it.productservice.tests.stepdefinitions
+#  plugin: pretty
+

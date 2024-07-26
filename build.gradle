@@ -12,23 +12,32 @@ repositories {
 }
 
 dependencies {
+    //All testImplementation dependencies are converted to implementation dependencies
+    //because all the tests are run in the root project
+
     //spring dependencies
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.springframework.boot:spring-boot-starter-test'
 
+    // Submodule dependencies
     implementation project(':microservices:datastore')
+    implementation project(path: ':microservices:datastore')
     implementation project(':microservices:productservice')
+    implementation project(path: ':microservices:productservice')
+
+    // Junit dependencies
     implementation platform('org.junit:junit-bom:5.9.1')
     implementation 'org.junit.jupiter:junit-jupiter'
-
     implementation 'org.junit.jupiter:junit-jupiter-api:5.10.3'
     implementation  'org.junit.jupiter:junit-jupiter-engine:5.10.3'
     implementation 'org.junit.platform:junit-platform-launcher:1.10.3'
-    // https://mvnrepository.com/artifact/org.junit.platform/junit-platform-console-standalone
     implementation 'org.junit.platform:junit-platform-console-standalone:1.10.3'
 
-    implementation project(path: ':microservices:productservice')
+    // Cucumber dependencies
+    implementation 'io.cucumber:cucumber-java:7.18.0'
+    implementation 'io.cucumber:cucumber-junit:7.18.0'
+    implementation 'io.cucumber:cucumber-junit-platform-engine:7.18.0'
 
 }
 

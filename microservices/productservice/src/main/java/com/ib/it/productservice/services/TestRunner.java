@@ -1,7 +1,10 @@
-package com.ib.it.services;
+package com.ib.it.productservice.services;
 
-import com.ib.it.productservice.services.TestRunner;
+
+
+import com.ib.it.productservice.tests.RunCucumberTest;
 import org.junit.platform.engine.DiscoverySelector;
+import org.junit.platform.engine.discovery.ClassNameFilter;
 import org.junit.platform.engine.discovery.DiscoverySelectors;
 import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.LauncherDiscoveryRequest;
@@ -10,28 +13,45 @@ import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
 import org.junit.platform.launcher.listeners.SummaryGeneratingListener;
 import org.junit.platform.launcher.listeners.TestExecutionSummary;
-import org.springframework.stereotype.Service;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
-public class TestService {
-    public TestService() {
-        System.out.println("TestService constructor");
-    }
-    public String runTests(String packageName) {
+import static org.junit.platform.engine.discovery.DiscoverySelectors.selectClass;
 
-       // return TestRunner.run();
+public class TestRunner {
+    public static String run() {
+        System.out.println("TestRunner run method");
+
+         LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request()
+                .selectors(DiscoverySelectors.selectPackage("com.ib.it.productservice.tests"))
+                .build();
+
+        Launcher launcher = LauncherFactory.create();
+        SummaryGeneratingListener listener = new SummaryGeneratingListener();
+
+        launcher.registerTestExecutionListeners(listener);
+        launcher.execute(request);
+
+        // Get the test execution summary
+        TestExecutionSummary summary = listener.getSummary();
+        StringWriter writer = new StringWriter();
+        summary.printTo(new PrintWriter(writer));
+        return writer.toString();
+    }
+
+    public static String run1()
+    {
         // Create a list of selectors for the tests to be executed
         List<DiscoverySelector> selectors = new ArrayList<>();
-        selectors.add(DiscoverySelectors.selectPackage(packageName));
+        selectors.add(DiscoverySelectors.selectPackage("com.ib.it.productservice.tests"));
 
         // Create a LauncherDiscoveryRequest
         LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request()
                 .selectors(selectors)
+                //.selectors(DiscoverySelectors.selectClasspathResource("path/to/your/features"))
                 .build();
 
         // Get the Launcher
@@ -40,8 +60,7 @@ public class TestService {
         // Register a listener to receive test execution events
         SummaryGeneratingListener listener = new SummaryGeneratingListener();
         launcher.registerTestExecutionListeners(listener);
-        CustomTestListener customListener = new CustomTestListener();
-        launcher.registerTestExecutionListeners(customListener);
+
         // Discover tests
         TestPlan testPlan = launcher.discover(request);
         if (testPlan.containsTests()) {
@@ -58,11 +77,8 @@ public class TestService {
         StringWriter writer = new StringWriter();
         summary.printTo(new PrintWriter(writer));
 
-        System.out.println("Listing all executed tests:");
-        customListener.getTestNames().forEach(System.out::println);
-
         // Print all executed tests
-
+        System.out.println("Listing all executed tests:");
 
         // Print failures with reasons
         for (TestExecutionSummary.Failure failure : summary.getFailures()) {
