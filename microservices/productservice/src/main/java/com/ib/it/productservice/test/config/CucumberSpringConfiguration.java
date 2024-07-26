@@ -1,4 +1,4 @@
-package com.ib.it.productservice.tests.config;
+package com.ib.it.productservice.test.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

@@ -3,6 +3,6 @@ server:
 
 #cucumber:
 #  features: classpath:/features
-#  glue: com.ib.it.productservice.tests.stepdefinitions
+#  glue: com.ib.it.productservice.tests.integration.bdd.stepdefinitions
 #  plugin: pretty
 

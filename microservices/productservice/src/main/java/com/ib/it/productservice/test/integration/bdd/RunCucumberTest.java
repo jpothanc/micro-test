@@ -1,4 +1,4 @@
-package com.ib.it.productservice.tests;
+package com.ib.it.productservice.test.integration.bdd;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "microservices/productservice/src/main/resources/features",
-        glue = "com.ib.it.productservice.tests.stepdefinitions",
+        glue = "com.ib.it.productservice.test.integration.bdd.stepdefinitions",
         plugin = {
                 "pretty",
                 "html:target/cucumber-reports/html-report.html",

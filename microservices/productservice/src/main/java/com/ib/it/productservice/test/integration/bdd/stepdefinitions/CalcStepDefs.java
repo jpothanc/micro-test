@@ -1,5 +1,5 @@
-package com.ib.it.productservice.tests.stepdefinitions;
-import com.ib.it.productservice.tests.config.CucumberSpringConfiguration;
+package com.ib.it.productservice.test.integration.bdd.stepdefinitions;
+import com.ib.it.productservice.test.config.CucumberSpringConfiguration;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

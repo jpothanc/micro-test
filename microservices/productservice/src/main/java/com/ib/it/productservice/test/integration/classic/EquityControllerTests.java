@@ -1,4 +1,4 @@
-package com.ib.it.productservice.tests;
+package com.ib.it.productservice.test.integration.classic;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

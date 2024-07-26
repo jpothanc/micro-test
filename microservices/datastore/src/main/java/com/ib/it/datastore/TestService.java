@@ -1,4 +1,4 @@
-package com.ib.it.services;
+package com.ib.it.datastore;
 
 import com.ib.it.lib.TestUtils;
 
