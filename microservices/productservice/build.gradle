@@ -29,6 +29,9 @@ dependencies {
     implementation 'io.cucumber:cucumber-junit:7.18.0'
     implementation 'io.cucumber:cucumber-junit-platform-engine:7.18.0'
     implementation 'io.cucumber:cucumber-spring:7.18.0'
+
+    // Submodule dependencies
+    implementation project(':microservices:common')
 }
 
 test {

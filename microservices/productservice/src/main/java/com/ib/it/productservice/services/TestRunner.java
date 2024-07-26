@@ -1,10 +1,8 @@
 package com.ib.it.productservice.services;
 
 
-
-import com.ib.it.productservice.tests.RunCucumberTest;
+import com.ib.it.lib.TestUtils;
 import org.junit.platform.engine.DiscoverySelector;
-import org.junit.platform.engine.discovery.ClassNameFilter;
 import org.junit.platform.engine.discovery.DiscoverySelectors;
 import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.LauncherDiscoveryRequest;
@@ -19,10 +17,9 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.platform.engine.discovery.DiscoverySelectors.selectClass;
-
 public class TestRunner {
     public static String run() {
+        TestUtils.getGreeting();
         System.out.println("TestRunner run method");
 
          LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request()

@@ -16,6 +16,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-test'
     implementation platform('org.junit:junit-bom:5.9.1')
     implementation 'org.junit.jupiter:junit-jupiter'
+
+    // Submodule dependencies
+    implementation project(':microservices:common')
 }
 
 test {
