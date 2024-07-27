@@ -1,1 +1,7 @@
 http://localhost:8090/api/v1/tests/run?packageName=com.ib.it.productservice.test
+
+I need
+Env
+version
+
+

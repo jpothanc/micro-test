@@ -1,0 +1,9 @@
+api-settings:
+    base-url: http://localhost:8080
+    version: v1
+    api:
+      equity-get-all-products: /api/{version}/equity/products
+      equity-get-product-by-code: /api/{version}/equity/product
+      equity-create-product: /api/{version}/equity/create
+      equity-update-product: /api/{version}/equity/update
+      equity-delete-product: /api/{version}/equity/delete
