@@ -1,10 +1,7 @@
 package com.ib.it.productservice.test.integration.bdd.stepdefinitions;
-import com.ib.it.productservice.test.config.CucumberSpringConfiguration;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.spring.CucumberContextConfiguration;
-import org.springframework.test.context.ContextConfiguration;
 
 import java.util.List;
 
@@ -14,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 //@CucumberContextConfiguration
 
 
-public class CalcStepDefs extends CucumberBootstrap{
+public class CalcStepDefs extends BaseStepDefs {
     private int result;
     List<Integer> numbers;
 

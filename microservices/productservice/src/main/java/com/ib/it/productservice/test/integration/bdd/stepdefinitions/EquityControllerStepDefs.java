@@ -1,22 +1,23 @@
 package com.ib.it.productservice.test.integration.bdd.stepdefinitions;
 
+import com.ib.it.productservice.helpers.EquityTestHelper;
 import com.ib.it.productservice.test.config.Constants;
 import interfaces.ApiConfig;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import static org.junit.Assert.assertTrue;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 
-public class EquityControllerDefs extends CucumberBootstrap {
+public class EquityControllerStepDefs extends BaseStepDefs {
 
     private final ApiConfig apiConfig;
 
     @Autowired
-    public EquityControllerDefs(ApiConfig apiConfig) {
+    public EquityControllerStepDefs(ApiConfig apiConfig) {
         this.apiConfig = apiConfig;
-        System.out.println("EquityControllerDefs constructor");
     }
 
     @Given("I have a list of equities")
@@ -26,10 +27,9 @@ public class EquityControllerDefs extends CucumberBootstrap {
 
     @When("I request all equities")
     public void iRequestAllEquities() {
-
         var url = this.apiConfig.getApiUrl(Constants.Api.EQUITY_GET_All, "");
-        System.out.println("I request all equities - " + url);
         response = webTestClient.get().uri(url).exchange();
+        System.out.println("I request all equities - " + url);
     }
 
     @Then("I should receive a list of equities")
@@ -41,8 +41,7 @@ public class EquityControllerDefs extends CucumberBootstrap {
     @When("I request {string} equity")
     public void iRequestEquity(String equity) {
         System.out.println("Requesting equity: " + equity);
-        var url = this.apiConfig.getApiUrl(Constants.Api.EQUITY_GET_BY_CODE, "?productCode="+ equity);
-        System.out.println("I request all equities - " + url);
+        var url = this.apiConfig.getApiUrl(Constants.Api.EQUITY_GET_BY_CODE, "?productCode=" + equity);
         response = webTestClient.get().uri(url).exchange();
     }
 
@@ -50,7 +49,30 @@ public class EquityControllerDefs extends CucumberBootstrap {
     public void iShouldReceiveEquity(String equity) {
         System.out.println("Verifying received equity: " + equity);
         response.expectStatus().isOk();
-
     }
+
+    @Then("I should receive product not found")
+    public void iShouldReceiveProductNotFound() {
+        response.expectStatus().isNotFound();
+    }
+
+    @Given("There is no equity with code {string}")
+    public void thereIsNoEquityWithCodeEquity(String equity) {
+        EquityTestHelper.deleteEquity(equity, webTestClient, apiConfig);
+    }
+
+    @When("I create {string} equity")
+    public void iCreateEquity(String equity) {
+        response = EquityTestHelper.createEquity(equity, webTestClient, apiConfig);
+    }
+
+    @Then("{string} should be created")
+    public void equityShouldBeCreated(String equity) {
+        response.expectStatus().isOk();
+        System.out.println("Equity created: " + equity);
+    }
+
+
+
 }
 
